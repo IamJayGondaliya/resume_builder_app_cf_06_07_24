@@ -15,6 +15,16 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
   int index = 0;
   bool hide = true;
 
+  String? name, contact, email, password;
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController contactController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  // FormKey
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   void setIndex(int i) {
     index = i;
     setState(() {});
@@ -98,88 +108,153 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                         color: Colors.white,
                       ),
                       padding: const EdgeInsets.all(12),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextField(
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              labelText: "Name",
-                              hintText: "Enter name",
-                              prefixIcon: const Icon(Icons.person),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                          ),
-                          15.h,
-                          TextField(
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              labelText: "Contact",
-                              hintText: "Enter number",
-                              prefixIcon: const Icon(Icons.phone),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                          ),
-                          15.h,
-                          TextField(
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelText: "Email",
-                              hintText: "Enter email",
-                              prefixIcon: const Icon(Icons.email),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                          ),
-                          15.h,
-                          TextField(
-                            obscureText: hide,
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.visiblePassword,
-                            decoration: InputDecoration(
-                              labelText: "Password",
-                              hintText: "Enter password",
-                              prefixIcon: const Icon(Icons.password),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  // 1
-                                  // if (hide == true) {
-                                  //   hide = false;
-                                  // } else {
-                                  //   hide = true;
-                                  // }
-                                  // 2
-                                  // if (hide) {
-                                  //   hide = false;
-                                  // } else {
-                                  //   hide = true;
-                                  // }
-                                  // 3
-                                  // hide = hide ? false : true;
-                                  // 4
-                                  hide = !hide;
-
-                                  setState(() {});
+                      child: SingleChildScrollView(
+                        child: Form(
+                          key: formKey,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextFormField(
+                                validator: (val) {
+                                  if (val!.isEmpty) {
+                                    return "Please enter name !!";
+                                  } else {
+                                    return null;
+                                  }
                                 },
-                                icon: Icon(
-                                  hide
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                controller: nameController,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  labelText: "Name",
+                                  hintText: "Enter name",
+                                  prefixIcon: const Icon(Icons.person),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
                                 ),
                               ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                              15.h,
+                              TextFormField(
+                                validator: (val) {
+                                  if (val!.isEmpty) {
+                                    return "Please enter number !!";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                controller: contactController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                  labelText: "Contact",
+                                  hintText: "Enter number",
+                                  prefixIcon: const Icon(Icons.phone),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
                               ),
-                            ),
+                              15.h,
+                              TextFormField(
+                                validator: (val) {
+                                  if (val!.isEmpty) {
+                                    return "Please enter email !!";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                controller: emailController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  labelText: "Email",
+                                  hintText: "Enter email",
+                                  prefixIcon: const Icon(Icons.email),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              15.h,
+                              TextFormField(
+                                validator: (val) {
+                                  if (val!.isEmpty) {
+                                    return "Please enter password !!";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                controller: passwordController,
+                                obscureText: hide,
+                                textInputAction: TextInputAction.done,
+                                keyboardType: TextInputType.visiblePassword,
+                                decoration: InputDecoration(
+                                  labelText: "Password",
+                                  hintText: "Enter password",
+                                  prefixIcon: const Icon(Icons.password),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      // 1
+                                      // if (hide == true) {
+                                      //   hide = false;
+                                      // } else {
+                                      //   hide = true;
+                                      // }
+                                      // 2
+                                      // if (hide) {
+                                      //   hide = false;
+                                      // } else {
+                                      //   hide = true;
+                                      // }
+                                      // 3
+                                      // hide = hide ? false : true;
+                                      // 4
+                                      hide = !hide;
+
+                                      setState(() {});
+                                    },
+                                    icon: Icon(
+                                      hide
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                    ),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              30.h,
+                              Text("Name: ${nameController.text}"),
+                              Text("Contact: ${contactController.text}"),
+                              Text("Email: ${emailController.text}"),
+                              Text("Password: ${passwordController.text}"),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      nameController.clear();
+                                      emailController.clear();
+                                      passwordController.clear();
+                                      contactController.clear();
+                                      setState(() {});
+                                    },
+                                    child: const Text("CLEAR"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      bool validated =
+                                          formKey.currentState!.validate();
+                                    },
+                                    child: const Text("SAVE"),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                     // Photo Page
