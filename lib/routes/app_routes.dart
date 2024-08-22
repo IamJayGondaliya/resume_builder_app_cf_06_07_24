@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resume_builder_app/views/build_option_page/all_options/contact_info_page/contact_info_page.dart';
 import 'package:resume_builder_app/views/build_option_page/all_options/declaration_page/declaration_page.dart';
 import 'package:resume_builder_app/views/build_option_page/all_options/personal_details_page/personal_details_page.dart';
+import 'package:resume_builder_app/views/build_option_page/all_options/technical_skills_page/technical_skills_page.dart';
 import 'package:resume_builder_app/views/build_option_page/build_option_page.dart';
 import 'package:resume_builder_app/views/home_page/home_page.dart';
 import 'package:resume_builder_app/views/splash_screen/splash_screen.dart';
@@ -39,6 +40,11 @@ class AppRoutes {
       'title': "Declaration",
       'route': "declaration_page",
     },
+    {
+      'icon': "${iconPath}certificate.png",
+      'title': "Technical Skills",
+      'route': "technical_skills_page",
+    },
   ];
 
   static Map<String, Widget Function(BuildContext)> routes = {
@@ -48,5 +54,6 @@ class AppRoutes {
     allOptions[0]['route']: (context) => const ContactInfoPage(),
     allOptions[2]['route']: (context) => const PersonalInfoPage(),
     allOptions[4]['route']: (context) => const DeclarationPage(),
+    allOptions[5]['route']: (context) => const TechnicalSkillsPage(),
   };
 }

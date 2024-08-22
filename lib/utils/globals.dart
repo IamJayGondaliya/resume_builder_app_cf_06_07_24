@@ -5,4 +5,5 @@ class Globals {
   static File? image;
   static bool isChecked = false;
   static List<String> languages = [];
+  static List<String> technicalSkills = [];
 }
