@@ -5,12 +5,14 @@ import 'package:resume_builder_app/views/build_option_page/all_options/personal_
 import 'package:resume_builder_app/views/build_option_page/all_options/technical_skills_page/technical_skills_page.dart';
 import 'package:resume_builder_app/views/build_option_page/build_option_page.dart';
 import 'package:resume_builder_app/views/home_page/home_page.dart';
+import 'package:resume_builder_app/views/pdf_page/pdf_page.dart';
 import 'package:resume_builder_app/views/splash_screen/splash_screen.dart';
 
 class AppRoutes {
   static String splashScreen = "/";
   static String homePage = "home_page";
   static String buildOptionPage = "build_option_page";
+  static String pdfPage = "pdf_page";
 
   static String iconPath = "lib/assets/icons/";
 
@@ -51,6 +53,7 @@ class AppRoutes {
     splashScreen: (context) => const SplashScreen(),
     homePage: (context) => const HomePage(),
     buildOptionPage: (context) => const BuildOptionPage(),
+    pdfPage: (context) => const PdfPage(),
     allOptions[0]['route']: (context) => const ContactInfoPage(),
     allOptions[2]['route']: (context) => const PersonalInfoPage(),
     allOptions[4]['route']: (context) => const DeclarationPage(),
